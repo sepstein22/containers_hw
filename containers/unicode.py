@@ -10,8 +10,8 @@ class NormalizedStr:
     True
     >>> 'César' in 'César Chávez'
     False
-    The two strings to the right of the in keyword above
-    are equal *semantically*,
+    The two strings to the right of the in keyword
+    above are equal *semantically*,
     but not equal *representationally*.
     In particular, the first is in NFC form, and the second is in NFD form.
     The purpose of this class is to automatically normalize our strings for us,
@@ -19,25 +19,25 @@ class NormalizedStr:
     '''
 
     def __init__(self, text, normal_form='NFC'):
-        self.normal_form = normal_form
-        self.text = unicodedata.normalize(self.normal_form, text)
+        self.norm = normal_form
+        self.text = unicodedata.normalize(self.norm, text)
         self.i = -1
 
     def __repr__(self):
         '''
-        The string returned by the __repr__ function should be valid
-        python code
-        that can be substituted directly into the python interpreter
-        to reproduce an equivalent object.
+        The string returned by the __repr__ function should
+        be valid python code
+        that can be substituted directly into the python
+        interpreter to reproduce an equivalent object.
         '''
-        s = self.normal_form
-        return "NormalizedStr(\'{}\', \'{}\')".format(self.text, s)
+        return "NormalizedStr(\'{}\', \'{}\')".format(self.text, self.norm)
 
     def __str__(self):
         '''
-        This functions converts the NormalizedStr into a regular string object.
-        The output is similar, but not exactly the same,
-        as the __repr__ function.
+        This functions converts the NormalizedStr
+        into a regular string object.
+        The output is similar, but not exactly
+        the same, as the __repr__ function.
         '''
         return str(self.text)
 
@@ -51,16 +51,12 @@ class NormalizedStr:
     def __contains__(self, substr):
         '''
         Returns true if the `substr` variable is contained within `self`.
-        The expression `a in b` desugars to `b.__contains__(a)`.
-        HINT:
-        You should normalize the `substr` variable to ensure that the
-        comparison
-        is done semantically and not syntactically.
+        The expression `a in b` desugars to `b.__contains__(a)`
         '''
-        normalized = unicodedata.normalize(self.normal_form, substr)
-        string = str(self.text)
-        string2 = str(normalized)
-        return string.__contains__(string2)
+        normalise = unicodedata.normalize(self.norm, substr)
+        string1 = str(self.text)
+        string2 = str(normalise)
+        return string1.__contains__(string2)
 
     def __getitem__(self, index):
         '''
@@ -85,37 +81,23 @@ class NormalizedStr:
         '''
         Returns a copy of `self` with `b` appended to the end.
         The expression `a + b` gets desugared into `a.__add__(b)`.
-        HINT:
-        The addition of two normalized strings
-        is not guaranteed to stay normalized.
-        Therefore, you must renormalize the strings after
-        adding them together.
         '''
-        s = self.normal_form
-        b_norm = unicodedata.normalize(self.normal_form, str(b))
-        renormalized = unicodedata.normalize(s, self.text.__add__(b_norm))
-        return NormalizedStr(renormalized, self.normal_form)
+        filler = self.text + unicodedata.normalize(self.norm, str(b))
+        word = unicodedata.normalize(self.norm, filler)
+        return NormalizedStr(word, self.norm)
 
     def __iter__(self):
-        '''
-        HINT:
-        Recall that the __iter__ method returns a class,
-        which is the iterator object.
-        You'll need to define your own iterator class with
-        the appropriate magic methods,
-        and return an instance of that class here.
-        '''
         return self
 
-    def __next(self):
+    def __next__(self):
         if self.i == len(self.text) - 1:
             raise StopIteration
         else:
-            self.i += 1
+            self. i += 1
             return self.text[self.i]
 
 
-class NormalIterator:
+class NormalIter:
     def __init__(self, text):
         self.text = text
         self.i = -1
