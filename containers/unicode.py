@@ -53,7 +53,8 @@ class NormalizedStr:
         Returns true if the `substr` variable is contained within `self`.
         The expression `a in b` desugars to `b.__contains__(a)`.
         HINT:
-        You should normalize the `substr` variable to ensure that the comparison
+        You should normalize the `substr` variable to ensure that the
+        comparison
         is done semantically and not syntactically.
         '''
         normalized = unicodedata.normalize(self.normal_form, substr)
@@ -107,13 +108,14 @@ class NormalizedStr:
         return self
 
     def __next(self):
-        if self.i == len(self.text) - 1: 
+        if self.i == len(self.text) - 1:
             raise StopIteration
-        else: 
+        else:
             self.i += 1
             return self.text[self.i]
 
-class NormalIterator: 
+
+class NormalIterator:
     def __init__(self, text):
         self.text = text
         self.i = -1
@@ -121,6 +123,6 @@ class NormalIterator:
     def __next__(self):
         if self.i == len(self.text) - 1:
             raise StopIteration
-        else: 
+        else:
             self.i += 1
             return self.text[self.i]
