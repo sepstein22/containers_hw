@@ -218,10 +218,10 @@ class BST(BinaryTree):
             node.right = BST._remove(value, node.right)
 
         else:
-            if node.left is None:
+            if not node.left:
                 node = node.right
 
-            if node.right is None:
+            if not node.right:
                 node = node.left
 
             temp_code = node.right
