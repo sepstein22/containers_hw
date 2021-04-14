@@ -190,7 +190,7 @@ class BinaryTree():
             return sum
         if node.left:
             sum += BinaryTree.__len__helper(node.left)
-        if node.left:
+        if node.right:
             sum += BinaryTree.__len__helper(node.right)
         return 1 + sum
 
