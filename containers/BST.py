@@ -138,7 +138,7 @@ class BST(BinaryTree):
             return False
 
     @staticmethod
-    def _find(value, node):
+    def _find(node, value):
         '''
         FIXME:
         Implement this function.
@@ -210,20 +210,17 @@ class BST(BinaryTree):
     def _remove(node, value):
         if not node:
             return node
-
         if node.value > value:
             node.left = BST._remove(node.left, value)
-
+            return node
         if node.value < value:
             node.right = BST._remove(node.right, value)
-
+            return node
         else:
             if not node.left:
                 return node.right
-
             if not node.right:
                 return node.left
-
             temp_code = node.right
 
             while temp_code.left:
