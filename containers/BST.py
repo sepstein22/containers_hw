@@ -231,7 +231,7 @@ class BST(BinaryTree):
 
             node.value = temp_code.value
             node.right = BST._remove(node.right, node.value)
-    
+
         return node
 
     def remove_list(self, xs):
