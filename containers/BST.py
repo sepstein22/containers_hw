@@ -103,7 +103,7 @@ class BST(BinaryTree):
             else:
                 BST._insert(value, node.right)
         else:
-            return
+            print("value present")
 
     def insert_list(self, xs):
         '''
@@ -155,7 +155,7 @@ class BST(BinaryTree):
         Returns the smallest value in the tree.
         '''
         if self.root is None:
-            raise ValueError('Nothing in tree')
+            raise ValueError('Not in tree')
         else:
             return BST._find_smallest(self.root)
 
@@ -181,7 +181,7 @@ class BST(BinaryTree):
         Follow the pattern of the _find_smallest function.
         '''
         if self.root is None:
-            raise ValueError('Nothing in tree')
+            raise ValueError('Tree is empty')
         else:
             return BST._find_largest(self.root)
 
@@ -244,5 +244,5 @@ class BST(BinaryTree):
         HINT:
         See the insert_list function.
         '''
-        for x in xs:
-            self.remove(x)
+        for element in xs:
+            self.remove(element)
