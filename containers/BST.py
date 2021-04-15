@@ -204,7 +204,7 @@ class BST(BinaryTree):
         if not self.root:
             return self.root
         else:
-            self.root = self._remove(value, self.root)
+            self.root = BST._remove(value, self.root)
 
     @staticmethod
     def _remove(node, value):
