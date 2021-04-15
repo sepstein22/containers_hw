@@ -143,9 +143,9 @@ class BST(BinaryTree):
         FIXME:
         Implement this function.
         '''
-        if node.value == value: 
+        if node.value == value:
             return True
-        if value < node.value and node.left: 
+        if value < node.value and node.left:
             return BST._find(value, node.left)
         if value > node.value and node.right:
             return BST._find(value, node.right)
