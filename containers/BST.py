@@ -207,22 +207,22 @@ class BST(BinaryTree):
             self.root = self._remove(value, self.root)
 
     @staticmethod
-    def _remove(value, node):
-        if node is None:
+    def _remove(node, value):
+        if not node:
             return node
 
         if node.value > value:
-            node.left = BST._remove(value, node.left)
+            node.left = BST._remove(node.left, value)
 
         if node.value < value:
-            node.right = BST._remove(value, node.right)
+            node.right = BST._remove(node.right, value)
 
         else:
             if not node.left:
-                node = node.right
+                return node.right
 
             if not node.right:
-                node = node.left
+                return node.left
 
             temp_code = node.right
 
@@ -230,7 +230,7 @@ class BST(BinaryTree):
                 temp_code = temp_code.left
 
             node.value = temp_code.value
-            node.right = BST._remove(node.value, node.right)
+            node.right = BST._remove(node.right, node.value)
 
     def remove_list(self, xs):
         '''
