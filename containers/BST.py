@@ -143,19 +143,19 @@ class BST(BinaryTree):
         FIXME:
         Implement this function.
         '''
+        if node.value == value: 
+            return True
+        if value < node.value and node.left: 
+            return BST._find(value, node.left)
         if value > node.value and node.right:
             return BST._find(value, node.right)
-        elif value < node.value and node.left:
-            return BST._find(value, node.left)
-        if value == node.value:
-            return True
 
     def find_smallest(self):
         '''
         Returns the smallest value in the tree.
         '''
         if self.root is None:
-            raise ValueError('Not in tree')
+            raise ValueError('Tree is empty')
         else:
             return BST._find_smallest(self.root)
 
