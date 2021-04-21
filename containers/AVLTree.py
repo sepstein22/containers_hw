@@ -75,7 +75,7 @@ class AVLTree(BST):
         newleft.left = node.left
         newleft.right = node.right.left
 
-        newnode = newleft
+        newnode.left = newleft
 
         return newnode
 
@@ -125,20 +125,20 @@ class AVLTree(BST):
 
     @staticmethod
     def _insert(value, node):
+        if node.value == value:
+            return
         if value < node.value:
             if node.left is None:
                 node.left = Node(value)
                 return
             else:
                 return AVLTree._insert(value, node.left)
-        elif value > node.value:
+        else:
             if node.right is None:
                 node.right = Node(value)
                 return
             else:
                 return AVLTree._insert(value, node.right)
-        else:
-            return
 
     def rebalanced(self, start):
         if start is None:
@@ -160,15 +160,15 @@ class AVLTree(BST):
         '''
         if node is None:
             return
-        balanced = AVLTree._balance_factor(node)
-        if balanced < 0:
+        balance = AVLTree._balance_factor(node)
+        if balance < 0:
             if AVLTree._balance_factor(node.right) > 0:
                 node.right = AVLTree._right_rotate(node.right)
                 node = AVLTree._left_rotate(node)
             else:
                 node = AVLTree._left_rotate(node)
             return node
-        else:
+        elif balance > 0:
             if AVLTree._balance_factor(node.left) < 0:
                 node.left = AVLTree._left_rotate(node.left)
                 node = AVLTree._right_rotate(node)
