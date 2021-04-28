@@ -10,7 +10,7 @@ class Heap():
     FIXME:
     Heap is currently not a subclass of BinaryTree.
     '''
-        def __init__(self, xs=None):
+    def __init__(self, xs=None):
         super().__init__()
         if xs:
             self.insert_list(xs)
