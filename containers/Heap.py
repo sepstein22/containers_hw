@@ -1,15 +1,7 @@
-'''
-This file implements the Heap data structure as a subclass of the BinaryTree.
-'''
-
 from containers.BinaryTree import BinaryTree, Node
 
 
-class Heap():
-    '''
-    FIXME:
-    Heap is currently not a subclass of BinaryTree.
-    '''
+class Heap(BinaryTree):
     def __init__(self, xs=None):
         super().__init__()
         if xs:
