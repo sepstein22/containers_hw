@@ -9,7 +9,7 @@ README = (HERE / "README.md").read_text()
 
 # This call to setup() does all the work
 setup(
-    name="cmc_csci046_sepstein22_",
+    name="cmc_csci046_sepstein22",
     version="1.0.0",
     description="Tree Week 13 homework, publishing repo",
     long_description=README,
